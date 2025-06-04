@@ -6,129 +6,280 @@ export default function Home() {
   useEffect(() => setMounted(true), []);
   
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black text-white">
-      {/* Theatrical curtain reveal animation */}
-      <div className={`fixed inset-0 z-50 flex transition-all duration-3000 ${mounted ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-        <div className="w-1/2 bg-red-900 transform transition-transform duration-3000" style={{transform: mounted ? 'translateX(-100%)' : 'translateX(0)'}}></div>
-        <div className="w-1/2 bg-red-900 transform transition-transform duration-3000" style={{transform: mounted ? 'translateX(100%)' : 'translateX(0)'}}></div>
+    <main className="relative min-h-screen overflow-hidden bg-gradient-to-b from-red-950 via-red-900 to-black">
+      {/* Velvet curtain texture background */}
+      <div className="absolute inset-0 opacity-30" 
+        style={{
+          backgroundImage: `repeating-linear-gradient(90deg, #7f1d1d 0px, #991b1b 2px, #7f1d1d 4px)`,
+          backgroundSize: '4px 100%'
+        }}
+      />
+      
+      {/* Dramatic spotlight from above */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-yellow-200 rounded-full filter blur-[200px] opacity-30 animate-pulse" />
+      
+      {/* Giant pulsating comedy/tragedy masks behind everything */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[600px] opacity-10 animate-pulse">
+        <span style={{
+          filter: 'drop-shadow(0 0 50px rgba(255, 215, 0, 0.5))',
+          animation: 'float 6s ease-in-out infinite'
+        }}>🎭</span>
       </div>
       
-      {/* Animated stage lights */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-yellow-400 rounded-full filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-600 rounded-full filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-red-500 rounded-full filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '2s'}}></div>
-      </div>
-      
-      <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
-        <div className="text-center max-w-6xl mx-auto">
-          {/* Floating 3D masks */}
-          <div className="absolute -top-20 -left-20 text-[200px] opacity-10 animate-spin" style={{animationDuration: '20s'}}>🎭</div>
-          <div className="absolute -bottom-20 -right-20 text-[200px] opacity-10 animate-spin" style={{animationDuration: '25s', animationDirection: 'reverse'}}>🎭</div>
-          
-          {/* Main title with staggered letter animation */}
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-8 tracking-tighter">
-            <span className="inline-block">
-              {'REAL THEATRE'.split('').map((letter, i) => (
-                <span
-                  key={i}
-                  className="inline-block transform hover:scale-125 transition-transform cursor-default"
-                  style={{
-                    animation: `dropIn 0.5s ${i * 0.1}s both`,
-                    background: `linear-gradient(${45 + i * 15}deg, #FFD700, #FF1744, #9C27B0)`,
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    textShadow: '0 0 40px rgba(255, 215, 0, 0.5)'
-                  }}
-                >
-                  {letter === ' ' ? '\u00A0' : letter}
-                </span>
-              ))}
-            </span>
-          </h1>
-          
-          {/* Typewriter effect tagline */}
-          <p className="text-2xl md:text-4xl mb-12 font-light">
-            <span className="text-yellow-400">Destroying the middleman</span>
-            <span className="inline-block w-1 h-8 bg-white ml-2 animate-pulse"></span>
-          </p>
-          
-          {/* Feature cards with hover effects */}
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <div className="group relative p-6 bg-gradient-to-br from-purple-900/50 to-transparent border border-purple-500/30 rounded-2xl transform transition-all hover:scale-105 hover:border-purple-400">
-              <div className="absolute inset-0 bg-purple-600/20 rounded-2xl filter blur-xl group-hover:blur-2xl transition-all"></div>
-              <div className="relative">
-                <div className="text-5xl mb-4">💰</div>
-                <h3 className="text-xl font-bold mb-2">100% EARNINGS</h3>
-                <p className="text-gray-300">No agent fees. Ever.</p>
-              </div>
-            </div>
-            
-            <div className="group relative p-6 bg-gradient-to-br from-red-900/50 to-transparent border border-red-500/30 rounded-2xl transform transition-all hover:scale-105 hover:border-red-400">
-              <div className="absolute inset-0 bg-red-600/20 rounded-2xl filter blur-xl group-hover:blur-2xl transition-all"></div>
-              <div className="relative">
-                <div className="text-5xl mb-4">⚡</div>
-                <h3 className="text-xl font-bold mb-2">INSTANT CASTING</h3>
-                <p className="text-gray-300">Minutes, not months.</p>
-              </div>
-            </div>
-            
-            <div className="group relative p-6 bg-gradient-to-br from-yellow-900/50 to-transparent border border-yellow-500/30 rounded-2xl transform transition-all hover:scale-105 hover:border-yellow-400">
-              <div className="absolute inset-0 bg-yellow-600/20 rounded-2xl filter blur-xl group-hover:blur-2xl transition-all"></div>
-              <div className="relative">
-                <div className="text-5xl mb-4">��</div>
-                <h3 className="text-xl font-bold mb-2">UNION STRONG</h3>
-                <p className="text-gray-300">Built for artists, by artists.</p>
-              </div>
-            </div>
-          </div>
-          
-          {/* CTA with ripple effect */}
-          <div className="relative inline-block group mb-12">
-            <button className="relative px-12 py-6 text-2xl font-bold bg-gradient-to-r from-yellow-400 via-red-500 to-purple-600 rounded-full transform transition-all hover:scale-110 active:scale-95">
-              <span className="absolute inset-0 rounded-full bg-white opacity-0 group-hover:opacity-20 transition-opacity"></span>
-              <span className="relative">BE THE REVOLUTION</span>
-            </button>
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400 via-red-500 to-purple-600 filter blur-lg opacity-50 group-hover:opacity-75 transition-opacity"></div>
-          </div>
-          
-          {/* Cities with staggered reveal */}
-          <div className="flex justify-center gap-8 text-xl font-light mb-8">
-            {['NYC', 'LA', 'CHICAGO'].map((city, i) => (
-              <span
-                key={city}
-                className="opacity-0 animate-fadeInUp"
-                style={{animationDelay: `${3 + i * 0.2}s`, animationFillMode: 'forwards'}}
-              >
-                {city}
+      <div className="relative z-10 min-h-screen flex flex-col justify-between">
+        {/* Top section with title in lights */}
+        <div className="flex-1 flex items-center justify-center px-4 pt-20">
+          <div className="text-center">
+            {/* Title in Broadway lights style */}
+            <h1 className="relative mb-8">
+              <span className="text-5xl md:text-7xl lg:text-8xl font-black tracking-wider"
+                style={{
+                  textShadow: `
+                    0 0 10px #fff,
+                    0 0 20px #fff,
+                    0 0 30px #ff0,
+                    0 0 40px #ff0,
+                    0 0 50px #ff0,
+                    0 0 60px #ff0,
+                    0 0 70px #ff0
+                  `,
+                  color: '#fff',
+                  animation: 'flicker 2s infinite alternate'
+                }}>
+                REALTHEATRE.ART
               </span>
-            ))}
+              {/* Light bulbs around text */}
+              <div className="absolute -top-4 -left-4 w-3 h-3 bg-yellow-300 rounded-full animate-pulse shadow-lg shadow-yellow-400/50" />
+              <div className="absolute -top-4 -right-4 w-3 h-3 bg-yellow-300 rounded-full animate-pulse shadow-lg shadow-yellow-400/50" style={{animationDelay: '0.5s'}} />
+              <div className="absolute -bottom-4 -left-4 w-3 h-3 bg-yellow-300 rounded-full animate-pulse shadow-lg shadow-yellow-400/50" style={{animationDelay: '1s'}} />
+              <div className="absolute -bottom-4 -right-4 w-3 h-3 bg-yellow-300 rounded-full animate-pulse shadow-lg shadow-yellow-400/50" style={{animationDelay: '1.5s'}} />
+            </h1>
+            
+            {/* Artistic tagline */}
+            <p className="text-2xl md:text-3xl text-yellow-100 mb-12 font-serif italic opacity-80">
+              "Where Artists Own the Stage"
+            </p>
+            
+            {/* Feature bubbles floating */}
+            <div className="flex flex-wrap justify-center gap-6 mb-12 max-w-4xl mx-auto">
+              <div className="group relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full filter blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
+                <div className="relative bg-black/50 backdrop-blur-sm border border-purple-400/30 rounded-full px-8 py-4 transform transition-all hover:scale-110">
+                  <p className="text-lg font-bold text-purple-300">100% Your Money</p>
+                </div>
+              </div>
+              
+              <div className="group relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-red-600 to-orange-600 rounded-full filter blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
+                <div className="relative bg-black/50 backdrop-blur-sm border border-red-400/30 rounded-full px-8 py-4 transform transition-all hover:scale-110">
+                  <p className="text-lg font-bold text-red-300">No Middlemen</p>
+                </div>
+              </div>
+              
+              <div className="group relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-600 to-green-600 rounded-full filter blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
+                <div className="relative bg-black/50 backdrop-blur-sm border border-yellow-400/30 rounded-full px-8 py-4 transform transition-all hover:scale-110">
+                  <p className="text-lg font-bold text-yellow-300">Union Strong</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* CTA that looks like a theatre ticket */}
+            <div className="inline-block transform hover:rotate-3 transition-transform">
+              <button className="relative bg-gradient-to-br from-yellow-100 to-yellow-300 text-black px-12 py-6 font-bold text-xl rounded-lg shadow-2xl hover:shadow-yellow-400/50 transition-all">
+                <span className="absolute top-0 left-0 right-0 h-1 bg-black/10" style={{background: 'repeating-linear-gradient(90deg, transparent 0, transparent 4px, rgba(0,0,0,0.1) 4px, rgba(0,0,0,0.1) 8px)'}} />
+                <span className="block">CLAIM YOUR STAGE</span>
+                <span className="text-sm opacity-70">Opening 2025</span>
+              </button>
+            </div>
+            
+            {/* Floating quotes */}
+            <div className="mt-12 text-yellow-200/60 text-lg font-serif italic">
+              <p>"First Month Free • NYC • LA • Chicago"</p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Stage at the bottom */}
+        <div className="relative">
+          {/* Stage floor */}
+          <div className="h-32 bg-gradient-to-b from-yellow-900 via-yellow-800 to-yellow-900 relative">
+            {/* Wood texture */}
+            <div className="absolute inset-0 opacity-30" 
+              style={{
+                backgroundImage: 'repeating-linear-gradient(0deg, #654321 0px, #8B4513 2px, #654321 4px)',
+                backgroundSize: '100% 4px'
+              }}
+            />
+            {/* Stage lights from below */}
+            <div className="absolute -top-20 left-0 right-0 h-20 bg-gradient-to-t from-yellow-400/20 to-transparent" />
+            {/* Footlights */}
+            <div className="absolute -top-4 left-0 right-0 flex justify-around">
+              {[...Array(8)].map((_, i) => (
+                <div key={i} className="w-8 h-8 bg-yellow-300 rounded-full shadow-lg shadow-yellow-400/50 animate-pulse" 
+                  style={{animationDelay: `${i * 0.2}s`}} />
+              ))}
+            </div>
           </div>
           
-          <p className="text-gray-400">The future isn't coming. It's here.</p>
+          {/* Stage front */}
+          <div className="h-8 bg-gradient-to-b from-yellow-950 to-black" />
         </div>
       </div>
       
       <style jsx>{`
-        @keyframes dropIn {
-          from {
-            opacity: 0;
-            transform: translateY(-100px) rotate(-10deg);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) rotate(0);
-          }
+        @keyframes flicker {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.8; }
         }
-        @keyframes fadeInUp {
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+      `}</style>
+    </main>
+  );
+}
+EOFgit add . && git commit -m "🎭 ARTISTIC theatre stage landing - pure Broadway magic!" && git push
+git add . && git commit -m "🎭 ARTISTIC theatre stage landing - pure Broadway magic!" && git push
+cat > app/page.tsx << 'EOF'
+"use client";
+import { useEffect, useState } from 'react';
+
+export default function Home() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  
+  return (
+    <main className="relative min-h-screen overflow-hidden bg-gradient-to-b from-red-950 via-red-900 to-black">
+      {/* Velvet curtain texture background */}
+      <div className="absolute inset-0 opacity-30" 
+        style={{
+          backgroundImage: `repeating-linear-gradient(90deg, #7f1d1d 0px, #991b1b 2px, #7f1d1d 4px)`,
+          backgroundSize: '4px 100%'
+        }}
+      />
+      
+      {/* Dramatic spotlight from above */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-yellow-200 rounded-full filter blur-[200px] opacity-30 animate-pulse" />
+      
+      {/* Giant pulsating comedy/tragedy masks behind everything */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[600px] opacity-10 animate-pulse">
+        <span style={{
+          filter: 'drop-shadow(0 0 50px rgba(255, 215, 0, 0.5))',
+          animation: 'float 6s ease-in-out infinite'
+        }}>🎭</span>
+      </div>
+      
+      <div className="relative z-10 min-h-screen flex flex-col justify-between">
+        {/* Top section with title in lights */}
+        <div className="flex-1 flex items-center justify-center px-4 pt-20">
+          <div className="text-center">
+            {/* Title in Broadway lights style */}
+            <h1 className="relative mb-8">
+              <span className="text-5xl md:text-7xl lg:text-8xl font-black tracking-wider"
+                style={{
+                  textShadow: `
+                    0 0 10px #fff,
+                    0 0 20px #fff,
+                    0 0 30px #ff0,
+                    0 0 40px #ff0,
+                    0 0 50px #ff0,
+                    0 0 60px #ff0,
+                    0 0 70px #ff0
+                  `,
+                  color: '#fff',
+                  animation: 'flicker 2s infinite alternate'
+                }}>
+                REALTHEATRE.ART
+              </span>
+              {/* Light bulbs around text */}
+              <div className="absolute -top-4 -left-4 w-3 h-3 bg-yellow-300 rounded-full animate-pulse shadow-lg shadow-yellow-400/50" />
+              <div className="absolute -top-4 -right-4 w-3 h-3 bg-yellow-300 rounded-full animate-pulse shadow-lg shadow-yellow-400/50" style={{animationDelay: '0.5s'}} />
+              <div className="absolute -bottom-4 -left-4 w-3 h-3 bg-yellow-300 rounded-full animate-pulse shadow-lg shadow-yellow-400/50" style={{animationDelay: '1s'}} />
+              <div className="absolute -bottom-4 -right-4 w-3 h-3 bg-yellow-300 rounded-full animate-pulse shadow-lg shadow-yellow-400/50" style={{animationDelay: '1.5s'}} />
+            </h1>
+            
+            {/* Artistic tagline */}
+            <p className="text-2xl md:text-3xl text-yellow-100 mb-12 font-serif italic opacity-80">
+              "Where Artists Own the Stage"
+            </p>
+            
+            {/* Feature bubbles floating */}
+            <div className="flex flex-wrap justify-center gap-6 mb-12 max-w-4xl mx-auto">
+              <div className="group relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full filter blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
+                <div className="relative bg-black/50 backdrop-blur-sm border border-purple-400/30 rounded-full px-8 py-4 transform transition-all hover:scale-110">
+                  <p className="text-lg font-bold text-purple-300">100% Your Money</p>
+                </div>
+              </div>
+              
+              <div className="group relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-red-600 to-orange-600 rounded-full filter blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
+                <div className="relative bg-black/50 backdrop-blur-sm border border-red-400/30 rounded-full px-8 py-4 transform transition-all hover:scale-110">
+                  <p className="text-lg font-bold text-red-300">No Middlemen</p>
+                </div>
+              </div>
+              
+              <div className="group relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-600 to-green-600 rounded-full filter blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
+                <div className="relative bg-black/50 backdrop-blur-sm border border-yellow-400/30 rounded-full px-8 py-4 transform transition-all hover:scale-110">
+                  <p className="text-lg font-bold text-yellow-300">Union Strong</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* CTA that looks like a theatre ticket */}
+            <div className="inline-block transform hover:rotate-3 transition-transform">
+              <button className="relative bg-gradient-to-br from-yellow-100 to-yellow-300 text-black px-12 py-6 font-bold text-xl rounded-lg shadow-2xl hover:shadow-yellow-400/50 transition-all">
+                <span className="absolute top-0 left-0 right-0 h-1 bg-black/10" style={{background: 'repeating-linear-gradient(90deg, transparent 0, transparent 4px, rgba(0,0,0,0.1) 4px, rgba(0,0,0,0.1) 8px)'}} />
+                <span className="block">CLAIM YOUR STAGE</span>
+                <span className="text-sm opacity-70">Opening 2025</span>
+              </button>
+            </div>
+            
+            {/* Floating quotes */}
+            <div className="mt-12 text-yellow-200/60 text-lg font-serif italic">
+              <p>"First Month Free • NYC • LA • Chicago"</p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Stage at the bottom */}
+        <div className="relative">
+          {/* Stage floor */}
+          <div className="h-32 bg-gradient-to-b from-yellow-900 via-yellow-800 to-yellow-900 relative">
+            {/* Wood texture */}
+            <div className="absolute inset-0 opacity-30" 
+              style={{
+                backgroundImage: 'repeating-linear-gradient(0deg, #654321 0px, #8B4513 2px, #654321 4px)',
+                backgroundSize: '100% 4px'
+              }}
+            />
+            {/* Stage lights from below */}
+            <div className="absolute -top-20 left-0 right-0 h-20 bg-gradient-to-t from-yellow-400/20 to-transparent" />
+            {/* Footlights */}
+            <div className="absolute -top-4 left-0 right-0 flex justify-around">
+              {[...Array(8)].map((_, i) => (
+                <div key={i} className="w-8 h-8 bg-yellow-300 rounded-full shadow-lg shadow-yellow-400/50 animate-pulse" 
+                  style={{animationDelay: `${i * 0.2}s`}} />
+              ))}
+            </div>
+          </div>
+          
+          {/* Stage front */}
+          <div className="h-8 bg-gradient-to-b from-yellow-950 to-black" />
+        </div>
+      </div>
+      
+      <style jsx>{`
+        @keyframes flicker {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.8; }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
         }
       `}</style>
     </main>
